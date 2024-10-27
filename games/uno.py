@@ -209,8 +209,8 @@ class Game:
     STARTING_HAND_SIZE = 7
 
     def __init__(self):
-        # self._ui = WebUI()
-        self._ui = ConsoleUI()
+        self._ui = WebUI()
+        # self._ui = ConsoleUI()
 
     def check_card(self, played, pile, current_color):
         return (
@@ -230,7 +230,7 @@ class Game:
                     f"Last played card, to match: ",
                     current_card,
                     " ",
-                    current_color,
+                    Deck.find_color(current_color),
                     "\n",
                 ]
             )
@@ -453,6 +453,12 @@ class Deck:
         Color("B", "blue", 20),
         Color("Y", "orange", 3),
     ]
+
+    def find_color(symbol: str) -> Color:
+        for color in Deck.COLORS:
+            if symbol == color.symbol():
+                return color
+
     COLOR_SYMBOLS = [color.symbol() for color in COLORS]
 
     # COLOR_MAP
